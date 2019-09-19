@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using System.Collections.Generic;
 using DVAC;
 using System.Text;
@@ -20,7 +20,6 @@ namespace Barton1792DB
         private static string WeekDaySchedule { get { return DataFolder + "6 DAY SCHEDULE WEEK OF 9-2-19.xlsm"; } }
         #endregion Props
 
-
         public static void ConnectToDB()
         {
             try
@@ -38,70 +37,47 @@ namespace Barton1792DB
 
         public static void CreateAndCleanEmployeeTable()
         {
-            Context cWeekDayData = Context.from_excel(WeekDaySchedule);
-            Context cExcelData = Context.from_excel(SeniorityFile);
-            Context cEmp = cWeekDayData[new string[] { "Fburba", "SHIFT PREFERENCE", "EMPLOYEE NAME" }];
-            cEmp.columnrename("Fburba", "SEN");
+            Context cWeekDayData = Context.from_excel(WeekDaySchedule, 1, 1, 1, 6, 10, true);
+            Context cSenList = Context.from_excel(SeniorityFile, 1, 1, 1, 1, 4, true);
 
-            //cEmp = cEmp[cEmp["ShiftPreference"].isnull(), cEmp["ShiftPreference"] = 0];
-            List<int> rowsToRemove = new List<int>();
-            for (int i = 0; i < cEmp.Rows; i++)
-            {
-                List<object> asdf = new List<object>();
-                for (int j = 0; j < 3; j++)
-                {
-                    asdf.Add(cEmp[i, j]);
-                }
-                if (asdf[0] == "" && asdf[1] == "" && asdf[2] == "")
-                {
-                    rowsToRemove.Add(i);
-                }
-            }
-            cEmp.drop_row(rowsToRemove.ToArray());
-            cEmp[cEmp["SHIFT PREFERENCE"] == "", "SHIFT PREFERENCE"] = 0;
+            cWeekDayData.columnrename("Fburba", "SEN");
+            cWeekDayData = cWeekDayData.clean_dropna("employee name");
+            cWeekDayData[cWeekDayData["SHIFT PREFERENCE"] == "", "SHIFT PREFERENCE"] = 0;
+            cWeekDayData.Name = "cWeekDayData";
+            cSenList.Name = "cSenList";
 
-            Context EmployeeTable = Context.zip("SEN", cEmp, cExcelData);
-            EmployeeTable.to_csv(DataFolder + "EmpTable1.csv");
+            Context EmployeeTable = Context.zip("SEN", cWeekDayData, cSenList);
+            //EmployeeTable = EmployeeTable[ColumnCondition.Not, "sen_cWeekDayData"];
 
-            Context EmpTable = Context.from_csv(DataFolder + "EmpTable1.csv");
-            EmpTable = EmpTable[ColumnCondition.Not, "SEN_", "UnNamesfeature_4_", "DEPT"];
-            EmpTable.columnrename("SEN", "empid");
-            EmpTable.columnrename("SHIFT PREFERENCE_", "shiftpref");
-            EmpTable.columnrename("EMPLOYEE NAME_", "empname");
-            EmpTable.columnrename("RATED JOB_","job");
-
-            List<string> jobs =  EmpTable["job"].Distinct().ToList();
-            EmpTable.addfeature("jobid");
-            for (int i = 0; i < EmpTable.Rows; i++)
+            List<string> jobs = EmployeeTable["RATED JOB_cWeekDayData"].Distinct().ToList();
+            EmployeeTable.addfeature("jobid");
+            for (int i = 0; i < EmployeeTable.Rows; i++)
             {
                 for (int j = 0; j < jobs.Count(); j++)
                 {
-                    if(EmpTable[i,3].ToString() == jobs[j])
+                    if (EmployeeTable[i, 4].ToString() == jobs[j])
                     {
-                        EmpTable[i, 4] = j + 1;
+                        EmployeeTable[i, 11] = j + 1;
                     }
                 }
             }
 
-
-            rowsToRemove = new List<int>();
-            for (int i = 0; i < EmpTable.Rows; i++)
+            List<string> depts = EmployeeTable["DEPT_cWeekDayData"].Distinct().ToList();
+            EmployeeTable.addfeature("deptid");
+            for (int i = 0; i < EmployeeTable.Rows; i++)
             {
-                List<object> asdf = new List<object>();
-                for (int j = 0; j < 5; j++)
+                for (int j = 0; j < depts.Count(); j++)
                 {
-                    asdf.Add(EmpTable[i, j]);
-                }
-                if (asdf[2] == "" && asdf[3] == "" && asdf[4] == "")
-                {
-                    rowsToRemove.Add(i);
+                    if (EmployeeTable[i, 5].ToString() == depts[j])
+                    {
+                        EmployeeTable[i, 12] = j + 1;
+                    }
                 }
             }
-            EmpTable.drop_row(rowsToRemove.ToArray());
+            
+            EmployeeTable.to_csv(DataFolder + "EmployeeTable.csv");
 
-            EmpTable.to_csv(DataFolder + "EmpTable2.csv");
-
-            util.print(EmpTable);
+            util.print(EmployeeTable);
             Context.from_sql_query(conn, "");
         }
         public static void CallProcedure(string Procedure)
