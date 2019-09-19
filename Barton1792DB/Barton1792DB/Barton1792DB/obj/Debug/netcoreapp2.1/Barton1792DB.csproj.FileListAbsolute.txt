@@ -1,0 +1,14 @@
+C:\Users\Telahun\Documents\School\CECS596\Barton1792\Barton1792DB\Barton1792DB\Barton1792DB\bin\Debug\netcoreapp2.1\Barton1792DB.deps.json
+C:\Users\Telahun\Documents\School\CECS596\Barton1792\Barton1792DB\Barton1792DB\Barton1792DB\bin\Debug\netcoreapp2.1\Barton1792DB.runtimeconfig.json
+C:\Users\Telahun\Documents\School\CECS596\Barton1792\Barton1792DB\Barton1792DB\Barton1792DB\bin\Debug\netcoreapp2.1\Barton1792DB.runtimeconfig.dev.json
+C:\Users\Telahun\Documents\School\CECS596\Barton1792\Barton1792DB\Barton1792DB\Barton1792DB\bin\Debug\netcoreapp2.1\Barton1792DB.dll
+C:\Users\Telahun\Documents\School\CECS596\Barton1792\Barton1792DB\Barton1792DB\Barton1792DB\bin\Debug\netcoreapp2.1\DVAC.dll
+C:\Users\Telahun\Documents\School\CECS596\Barton1792\Barton1792DB\Barton1792DB\Barton1792DB\bin\Debug\netcoreapp2.1\DVAC.pdb
+C:\Users\Telahun\Documents\School\CECS596\Barton1792\Barton1792DB\Barton1792DB\Barton1792DB\obj\Debug\netcoreapp2.1\Barton1792DB.csprojAssemblyReference.cache
+C:\Users\Telahun\Documents\School\CECS596\Barton1792\Barton1792DB\Barton1792DB\Barton1792DB\obj\Debug\netcoreapp2.1\Barton1792DB.csproj.CoreCompileInputs.cache
+C:\Users\Telahun\Documents\School\CECS596\Barton1792\Barton1792DB\Barton1792DB\Barton1792DB\obj\Debug\netcoreapp2.1\Barton1792DB.AssemblyInfoInputs.cache
+C:\Users\Telahun\Documents\School\CECS596\Barton1792\Barton1792DB\Barton1792DB\Barton1792DB\obj\Debug\netcoreapp2.1\Barton1792DB.AssemblyInfo.cs
+C:\Users\Telahun\Documents\School\CECS596\Barton1792\Barton1792DB\Barton1792DB\Barton1792DB\obj\Debug\netcoreapp2.1\Barton1792DB.csproj.CopyComplete
+C:\Users\Telahun\Documents\School\CECS596\Barton1792\Barton1792DB\Barton1792DB\Barton1792DB\bin\Debug\netcoreapp2.1\Barton1792DB.pdb
+C:\Users\Telahun\Documents\School\CECS596\Barton1792\Barton1792DB\Barton1792DB\Barton1792DB\obj\Debug\netcoreapp2.1\Barton1792DB.dll
+C:\Users\Telahun\Documents\School\CECS596\Barton1792\Barton1792DB\Barton1792DB\Barton1792DB\obj\Debug\netcoreapp2.1\Barton1792DB.pdb
