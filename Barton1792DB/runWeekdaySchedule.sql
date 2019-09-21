@@ -1,10 +1,7 @@
 CREATE PROCEDURE `new_procedure` ()
 BEGIN
 
-END
-
-
-Use SchedulingDB
+Use Sazerac;
  
 Declare int @shift = 1, --start with first shift
         int @JobId = 1, --start with first job
@@ -16,15 +13,16 @@ create table #tempJobIdValues
  
 Select *
 into #AvailableWorkers
-From dbo.Workers
+From employee
 where available = 1
-order by shift, employeeID desc
+order by shiftpref, empid desc
  
 while @shift <= 3
 Begin 
     --get maxJobId value
     select @maxJobId = Count(jobId)
-    from dbo.Job 
+    from job 
+    join on job.jobid = employee.jobid
     where shift = @shift --will # of jobs depend on shift?!?!
  
     while @jobId <= @maxJobId --can change to @jobid <= @maxjobid (selected by shift (can have more jobs per shift)) --can count() jobs
@@ -62,3 +60,5 @@ Begin
     @shift++
 end
 
+
+END
