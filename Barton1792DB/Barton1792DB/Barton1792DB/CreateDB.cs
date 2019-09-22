@@ -1,4 +1,4 @@
-﻿﻿using System;
+﻿using System;
 using System.Collections.Generic;
 using DVAC;
 using System.Text;
@@ -47,7 +47,6 @@ namespace Barton1792DB
             cSenList.Name = "cSenList";
 
             Context EmployeeTable = Context.zip("SEN", cWeekDayData, cSenList);
-            //EmployeeTable = EmployeeTable[ColumnCondition.Not, "sen_cWeekDayData"];
 
             List<string> jobs = EmployeeTable["RATED JOB_cWeekDayData"].Distinct().ToList();
             EmployeeTable.addfeature("jobid");
@@ -57,7 +56,7 @@ namespace Barton1792DB
                 {
                     if (EmployeeTable[i, 4].ToString() == jobs[j])
                     {
-                        EmployeeTable[i, 11] = j + 1;
+                        EmployeeTable[i, 10] = j + 1;
                     }
                 }
             }
@@ -70,15 +69,23 @@ namespace Barton1792DB
                 {
                     if (EmployeeTable[i, 5].ToString() == depts[j])
                     {
-                        EmployeeTable[i, 12] = j + 1;
+                        EmployeeTable[i, 11] = j + 1;
                     }
                 }
-            }
-            
-            EmployeeTable.to_csv(DataFolder + "EmployeeTable.csv");
 
-            util.print(EmployeeTable);
-            Context.from_sql_query(conn, "");
+            }
+
+            //EmployeeTable.to_csv(DataFolder + "EmployeeTable.csv");
+
+            EmployeeTable.columnrename("sen", "empid");
+            EmployeeTable.columnrename("SHIFT PREFERENCE_cWeekDayData", "shiftpref");
+            EmployeeTable.columnrename("EMPLOYEE NAME_cWeekDayData", "empname");
+            EmployeeTable.columnrename("RATED JOB_cWeekDayData", "job");
+
+            Context EmployeeTableToDB = EmployeeTable[new string[] { "empid", "shiftpref", "empname", "job", "jobid" }];
+            util.print(EmployeeTableToDB);
+            //EmployeeTable.to_csv(DataFolder + "EmployeeTableToDB.csv");
+            Context.from_sql_query(conn, "barton1792CreateTables.sql");
         }
         public static void CallProcedure(string Procedure)
         {
