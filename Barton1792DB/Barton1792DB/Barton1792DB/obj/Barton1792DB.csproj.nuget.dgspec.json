@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Telahun\\Documents\\School\\CECS596\\Barton1792\\Barton1792DB\\Barton1792DB\\Barton1792DB\\Barton1792DB.csproj": {}
+    "C:\\Users\\Telahun\\Documents\\School\\CECS596\\Barton1792\\Barton1792API\\BartonAPI\\Barton1792DB\\Barton1792DB\\Barton1792DB\\Barton1792DB.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Telahun\\Documents\\School\\CECS596\\Barton1792\\Barton1792DB\\Barton1792DB\\Barton1792DB\\Barton1792DB.csproj": {
+    "C:\\Users\\Telahun\\Documents\\School\\CECS596\\Barton1792\\Barton1792API\\BartonAPI\\Barton1792DB\\Barton1792DB\\Barton1792DB\\Barton1792DB.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Telahun\\Documents\\School\\CECS596\\Barton1792\\Barton1792DB\\Barton1792DB\\Barton1792DB\\Barton1792DB.csproj",
+        "projectUniqueName": "C:\\Users\\Telahun\\Documents\\School\\CECS596\\Barton1792\\Barton1792API\\BartonAPI\\Barton1792DB\\Barton1792DB\\Barton1792DB\\Barton1792DB.csproj",
         "projectName": "Barton1792DB",
-        "projectPath": "C:\\Users\\Telahun\\Documents\\School\\CECS596\\Barton1792\\Barton1792DB\\Barton1792DB\\Barton1792DB\\Barton1792DB.csproj",
+        "projectPath": "C:\\Users\\Telahun\\Documents\\School\\CECS596\\Barton1792\\Barton1792API\\BartonAPI\\Barton1792DB\\Barton1792DB\\Barton1792DB\\Barton1792DB.csproj",
         "packagesPath": "C:\\Users\\Telahun\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Telahun\\Documents\\School\\CECS596\\Barton1792\\Barton1792DB\\Barton1792DB\\Barton1792DB\\obj\\",
+        "outputPath": "C:\\Users\\Telahun\\Documents\\School\\CECS596\\Barton1792\\Barton1792API\\BartonAPI\\Barton1792DB\\Barton1792DB\\Barton1792DB\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

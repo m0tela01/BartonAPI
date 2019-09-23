@@ -14,10 +14,10 @@ namespace Barton1792DB
         #region Props
         private static MySqlConnection conn;
         private static string BSConnectionString { get { return "server=107.180.51.29;uid=sazerac_user;pwd=sazerac2019;database=sazerac"; } }
-
         private static string DataFolder { get { return Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "\\DataFiles\\"; } }
         private static string SeniorityFile { get { return DataFolder + "UL Master Seniority List.xlsx"; } }
         private static string WeekDaySchedule { get { return DataFolder + "6 DAY SCHEDULE WEEK OF 9-2-19.xlsm"; } }
+        private static FileInfo sqlFile = new FileInfo(DataFolder + "barton1792CreateTables.sql");
         #endregion Props
 
         public static void ConnectToDB()
@@ -85,15 +85,50 @@ namespace Barton1792DB
             Context EmployeeTableToDB = EmployeeTable[new string[] { "empid", "shiftpref", "empname", "job", "jobid" }];
             util.print(EmployeeTableToDB);
             //EmployeeTable.to_csv(DataFolder + "EmployeeTableToDB.csv");
-            Context.from_sql_query(conn, "barton1792CreateTables.sql");
+            
+            string sql = sqlFile.OpenText().ReadToEnd();
+            
+            Context.from_sql_query(conn, sql);
         }
         public static void CallProcedure(string Procedure)
         {
 
         }
-        public static void CallProcedure(string Procedure, Context cTable)
+        public static void CallProcedure(this Context cTable,  string Procedure)
         {
-            CallProcedure(Procedure);
+            //CallProcedure(Procedure);
+
+            string connStr = "server=localhost;user id=user id;password=password;database=database";
+            // MySql Connection Object
+            MySqlConnection conn = new MySqlConnection(connStr);
+
+            //  csv file path
+            string file = @"filepath";
+
+            // MySQL BulkLoader
+            MySqlBulkLoader bl = new MySqlBulkLoader(conn);
+            bl.TableName = "tablename";
+            bl.FieldTerminator = "|"; // This can be { comma,tab,semi colon, or other character}
+            bl.LineTerminator = "\n";
+            bl.FileName = file;
+
+            try
+            {
+                Console.WriteLine("Connecting to MySQL...");
+                conn.Open();
+
+                // Upload data from file
+                int count = bl.Load();
+                Console.WriteLine(count + " lines uploaded.");
+
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            Console.WriteLine("Done.");
+            Console.ReadLine();
         }
     }
 }
