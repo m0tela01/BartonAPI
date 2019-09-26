@@ -9,8 +9,9 @@ namespace Barton1792DB
     {
         public static void Main(string[] args)
         {
-            CreateDB.ConnectToDB();
+            //CreateDB.ConnectToDB();
             CreateDB.CreateAndCleanEmployeeTable();
+            //CreateDB.CallProcedure();
             Console.ReadKey();
         }
     }

@@ -12,7 +12,7 @@ namespace Barton1792DB
     public static class CreateDB
     {
         #region Props
-        private static MySqlConnection conn;
+        private static MySqlConnection conn = new MySqlConnection();
         private static string BSConnectionString { get { return "server=107.180.51.29;uid=sazerac_user;pwd=sazerac2019;database=sazerac"; } }
         private static string DataFolder { get { return Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "\\DataFiles\\"; } }
         private static string SeniorityFile { get { return DataFolder + "UL Master Seniority List.xlsx"; } }
@@ -24,7 +24,6 @@ namespace Barton1792DB
         {
             try
             {
-                conn = new MySqlConnection();
                 conn.ConnectionString = BSConnectionString;
                 conn.Open();
                 util.print("connected to BS Database\n");
@@ -39,7 +38,9 @@ namespace Barton1792DB
         {
             Context cWeekDayData = Context.from_excel(WeekDaySchedule, 1, 1, 1, 6, 10, true);
             Context cSenList = Context.from_excel(SeniorityFile, 1, 1, 1, 1, 4, true);
+            conn.ConnectionString = BSConnectionString;
 
+            //Clean initial data
             cWeekDayData.columnrename("Fburba", "SEN");
             cWeekDayData = cWeekDayData.clean_dropna("employee name");
             cWeekDayData[cWeekDayData["SHIFT PREFERENCE"] == "", "SHIFT PREFERENCE"] = 0;
@@ -47,7 +48,7 @@ namespace Barton1792DB
             cSenList.Name = "cSenList";
 
             Context EmployeeTable = Context.zip("SEN", cWeekDayData, cSenList);
-
+            EmployeeTable.Name = "EmployeeTable";
             List<string> jobs = EmployeeTable["RATED JOB_cWeekDayData"].Distinct().ToList();
             EmployeeTable.addfeature("jobid");
             for (int i = 0; i < EmployeeTable.Rows; i++)
@@ -75,40 +76,29 @@ namespace Barton1792DB
 
             }
 
-            //EmployeeTable.to_csv(DataFolder + "EmployeeTable.csv");
-
             EmployeeTable.columnrename("sen", "empid");
             EmployeeTable.columnrename("SHIFT PREFERENCE_cWeekDayData", "shiftpref");
             EmployeeTable.columnrename("EMPLOYEE NAME_cWeekDayData", "empname");
             EmployeeTable.columnrename("RATED JOB_cWeekDayData", "job");
 
             Context EmployeeTableToDB = EmployeeTable[new string[] { "empid", "shiftpref", "empname", "job", "jobid" }];
-            util.print(EmployeeTableToDB);
-            //EmployeeTable.to_csv(DataFolder + "EmployeeTableToDB.csv");
-            
-            string sql = sqlFile.OpenText().ReadToEnd();
-            
-            Context.from_sql_query(conn, sql);
+            //EmployeeTableToDB["empname"] = EmployeeTableToDB[new string[] { "empname" }].clean_regex("empname", ",", "; ")["empname"];
+            EmployeeTableToDB = EmployeeTableToDB.clean_dropna(new string[] { "empname", "job" });
+            EmployeeTableToDB.to_csv(DataFolder + "EmployeeTableToDB.csv");
+            Context.Import_csv(conn, DataFolder + "EmployeeTableToDB.csv", tablename: "employee", showlog: true);
+            util.print("Imported: " + EmployeeTable.Name);
         }
-        public static void CallProcedure(string Procedure)
-        {
-
-        }
-        public static void CallProcedure(this Context cTable,  string Procedure)
+        public static void CallProcedure()//this Context cTable,  string Procedure)
         {
             //CallProcedure(Procedure);
-
-            string connStr = "server=localhost;user id=user id;password=password;database=database";
             // MySql Connection Object
-            MySqlConnection conn = new MySqlConnection(connStr);
-
-            //  csv file path
-            string file = @"filepath";
+            conn.ConnectionString = BSConnectionString;
+            string file = DataFolder + "EmployeeTableToDB.csv";
 
             // MySQL BulkLoader
             MySqlBulkLoader bl = new MySqlBulkLoader(conn);
-            bl.TableName = "tablename";
-            bl.FieldTerminator = "|"; // This can be { comma,tab,semi colon, or other character}
+            bl.TableName = "employee";
+            bl.FieldTerminator = ",";
             bl.LineTerminator = "\n";
             bl.FileName = file;
 
@@ -129,6 +119,9 @@ namespace Barton1792DB
             }
             Console.WriteLine("Done.");
             Console.ReadLine();
+        }
+        public static void CallProcedure(string Procedure)
+        {
         }
     }
 }

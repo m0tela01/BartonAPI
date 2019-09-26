@@ -31,7 +31,7 @@ CREATE TABLE `sazerac`.`department` (
 );
 
 
-DROP TABLE IF EXISTS sazerac.department;
+DROP TABLE IF EXISTS sazerac.shift;
 CREATE TABLE `sazerac`.`shift` (
 	jobid varchar(50),
     deptid INT SIGNED,
