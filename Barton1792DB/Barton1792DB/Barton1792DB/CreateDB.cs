@@ -13,7 +13,7 @@ namespace Barton1792DB
     {
         #region Props
         private static MySqlConnection conn = new MySqlConnection();
-        private static string BSConnectionString { get { return "server=107.180.51.29;uid=sazerac_user;pwd=sazerac2019;database=sazerac"; } }
+        public static string BSConnectionString { get { return "server=107.180.51.29;uid=sazerac_user;pwd=sazerac2019;database=sazerac"; } }
         private static string DataFolder { get { return Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "\\DataFiles\\"; } }
         private static string SeniorityFile { get { return DataFolder + "UL Master Seniority List.xlsx"; } }
         private static string WeekDaySchedule { get { return DataFolder + "6 DAY SCHEDULE WEEK OF 9-2-19.xlsm"; } }
@@ -123,5 +123,7 @@ namespace Barton1792DB
         public static void CallProcedure(string Procedure)
         {
         }
+
+        
     }
 }
