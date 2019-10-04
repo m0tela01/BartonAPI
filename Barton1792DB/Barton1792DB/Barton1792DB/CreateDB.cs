@@ -17,6 +17,7 @@ namespace Barton1792DB
         private static string DataFolder { get { return Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "\\DataFiles\\"; } }
         private static string SeniorityFile { get { return DataFolder + "UL Master Seniority List.xlsx"; } }
         private static string WeekDaySchedule { get { return DataFolder + "6 DAY SCHEDULE WEEK OF 9-2-19.xlsm"; } }
+        private static string MasterList { get { return DataFolder + "Copy of MASTER SENIORITY LISTING.xlsx"; } }
         private static FileInfo sqlFile = new FileInfo(DataFolder + "barton1792CreateTables.sql");
         #endregion Props
 
@@ -34,6 +35,49 @@ namespace Barton1792DB
             }
         }
         public static void CreateAndCleanEmployeeTable()
+        {
+            Context cMaster = Context.from_excel(MasterList, 2, 1, 1, 1, 15, true); 
+            conn.ConnectionString = BSConnectionString;
+
+            cMaster.columnrename("Seniority Number", "senioritynumber");
+            cMaster.columnrename("Clock Number", "clocknumber");
+            cMaster.columnrename("Shift Preference", "shiftpref");
+            cMaster.columnrename("EMPLOYEE NAME", "empname");
+            cMaster.columnrename("DATE", "senioritydate");
+            cMaster.columnrename("Prebuilt Hours", "prebuilthours");
+            cMaster.columnrename("Weekend OT hours", "weekendothours");
+            cMaster.columnrename("Total hours", "totalhours");
+
+            List<string> jobs = cMaster["Rated Job"].Distinct().ToList();
+            cMaster.addfeature("jobid");
+            for (int i = 0; i < cMaster.Rows; i++)
+            {
+                for (int j = 0; j < jobs.Count(); j++)
+                {
+                    if (cMaster[i, 4].ToString() == jobs[j])
+                    {
+                        cMaster[i, 10] = j + 1;
+                    }
+                }
+            }
+
+            Context EmployeeTableToDB = cMaster[new string[] {
+                "clocknumber",
+                "senioritynumber",
+                "shiftpref",
+                "empname",
+                "senioritydate",
+                "prebuilthours",
+                "weekendothours",
+                "totalhours",
+                "jobid" }];
+
+            EmployeeTableToDB.to_csv(DataFolder + "EmployeeTableToDB.csv");
+            Context.Import_csv(conn, DataFolder + "EmployeeTableToDB.csv", tablename: "employee", showlog: true);
+            util.print("Imported: " + "cMaster");
+        }
+
+        public static void CreateAndCleanEmployeeTableOld()
         {
             Context cWeekDayData = Context.from_excel(WeekDaySchedule, 1, 1, 1, 6, 10, true);
             Context cSenList = Context.from_excel(SeniorityFile, 1, 1, 1, 1, 4, true);
@@ -86,41 +130,6 @@ namespace Barton1792DB
             EmployeeTableToDB.to_csv(DataFolder + "EmployeeTableToDB.csv");
             Context.Import_csv(conn, DataFolder + "EmployeeTableToDB.csv", tablename: "employee", showlog: true);
             util.print("Imported: " + EmployeeTable.Name);
-        }
-        public static void CallProcedure()//this Context cTable,  string Procedure)
-        {
-            //CallProcedure(Procedure);
-            // MySql Connection Object
-            conn.ConnectionString = BSConnectionString;
-            string file = DataFolder + "EmployeeTableToDB.csv";
-
-            // MySQL BulkLoader
-            MySqlBulkLoader bl = new MySqlBulkLoader(conn);
-            bl.TableName = "employee";
-            bl.FieldTerminator = ",";
-            bl.LineTerminator = "\n";
-            bl.FileName = file;
-
-            try
-            {
-                Console.WriteLine("Connecting to MySQL...");
-                conn.Open();
-
-                // Upload data from file
-                int count = bl.Load();
-                Console.WriteLine(count + " lines uploaded.");
-
-                conn.Close();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.ToString());
-            }
-            Console.WriteLine("Done.");
-            Console.ReadLine();
-        }
-        public static void CallProcedure(string Procedure)
-        {
         }
     }
 }

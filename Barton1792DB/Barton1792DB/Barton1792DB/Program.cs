@@ -13,8 +13,8 @@ namespace Barton1792DB
         public static void Main(string[] args)
         {
             //CreateDB.ConnectToDB();
-            //CreateDB.CreateAndCleanEmployeeTable();
-            //CreateDB.CallProcedure();
+            CreateDB.CreateAndCleanEmployeeTable();
+            Console.ReadKey();
             Readers reader = new Readers();
 
             //List<Employee> EmployeeData = reader.GetStuff(new List<Employee>());
