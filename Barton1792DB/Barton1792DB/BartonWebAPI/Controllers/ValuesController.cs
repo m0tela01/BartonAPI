@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Barton1792DB.DBO;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BartonWebAPI.Controllers
@@ -28,6 +29,12 @@ namespace BartonWebAPI.Controllers
         [HttpPost]
         public void Post([FromBody] string value)
         {
+        }
+
+        [HttpPost]
+        public void Post([FromBody]IEnumerable<Employee> employees)
+        {
+
         }
 
         // PUT api/values/5

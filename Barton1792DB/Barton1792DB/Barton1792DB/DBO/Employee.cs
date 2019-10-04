@@ -6,10 +6,15 @@ namespace Barton1792DB.DBO
 {
     public class Employee
     {
-        public int EmployeeId { get; set; }
-        public int ShiftPreference { get; set; }
+        public int SeniorityNumber { get; set; }
+        public int ClockNumber { get; set; }
+        public DateTime SeniorityDate { get; set; }
         public string EmployeeName { get; set; }
-        public string Job { get; set; }
-        public int JobId { get; set; }
+        public int ShiftPreference { get; set; }
+        public string JobName { get; set; }
+        public string DepartmentName { get; set; }
+        public int PrebuiltHours { get; set; }
+        public int WeekendOTHours { get; set; }
+        public int TotalHours { get; set; }
     }
 }

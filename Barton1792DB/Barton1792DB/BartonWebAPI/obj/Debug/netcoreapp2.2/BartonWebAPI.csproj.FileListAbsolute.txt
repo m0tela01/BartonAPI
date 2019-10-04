@@ -1,0 +1,14 @@
+C:\Users\Telahun\Documents\School\CECS596\Barton1792\Barton1792API\BartonAPI\Barton1792DB\Barton1792DB\BartonWebAPI\bin\Debug\netcoreapp2.2\BartonWebAPI.deps.json
+C:\Users\Telahun\Documents\School\CECS596\Barton1792\Barton1792API\BartonAPI\Barton1792DB\Barton1792DB\BartonWebAPI\bin\Debug\netcoreapp2.2\BartonWebAPI.runtimeconfig.json
+C:\Users\Telahun\Documents\School\CECS596\Barton1792\Barton1792API\BartonAPI\Barton1792DB\Barton1792DB\BartonWebAPI\bin\Debug\netcoreapp2.2\BartonWebAPI.runtimeconfig.dev.json
+C:\Users\Telahun\Documents\School\CECS596\Barton1792\Barton1792API\BartonAPI\Barton1792DB\Barton1792DB\BartonWebAPI\bin\Debug\netcoreapp2.2\BartonWebAPI.dll
+C:\Users\Telahun\Documents\School\CECS596\Barton1792\Barton1792API\BartonAPI\Barton1792DB\Barton1792DB\BartonWebAPI\obj\Debug\netcoreapp2.2\BartonWebAPI.csprojAssemblyReference.cache
+C:\Users\Telahun\Documents\School\CECS596\Barton1792\Barton1792API\BartonAPI\Barton1792DB\Barton1792DB\BartonWebAPI\obj\Debug\netcoreapp2.2\BartonWebAPI.csproj.CoreCompileInputs.cache
+C:\Users\Telahun\Documents\School\CECS596\Barton1792\Barton1792API\BartonAPI\Barton1792DB\Barton1792DB\BartonWebAPI\obj\Debug\netcoreapp2.2\BartonWebAPI.RazorAssemblyInfo.cache
+C:\Users\Telahun\Documents\School\CECS596\Barton1792\Barton1792API\BartonAPI\Barton1792DB\Barton1792DB\BartonWebAPI\obj\Debug\netcoreapp2.2\BartonWebAPI.RazorAssemblyInfo.cs
+C:\Users\Telahun\Documents\School\CECS596\Barton1792\Barton1792API\BartonAPI\Barton1792DB\Barton1792DB\BartonWebAPI\obj\Debug\netcoreapp2.2\BartonWebAPI.AssemblyInfoInputs.cache
+C:\Users\Telahun\Documents\School\CECS596\Barton1792\Barton1792API\BartonAPI\Barton1792DB\Barton1792DB\BartonWebAPI\obj\Debug\netcoreapp2.2\BartonWebAPI.AssemblyInfo.cs
+C:\Users\Telahun\Documents\School\CECS596\Barton1792\Barton1792API\BartonAPI\Barton1792DB\Barton1792DB\BartonWebAPI\obj\Debug\netcoreapp2.2\BartonWebAPI.RazorTargetAssemblyInfo.cache
+C:\Users\Telahun\Documents\School\CECS596\Barton1792\Barton1792API\BartonAPI\Barton1792DB\Barton1792DB\BartonWebAPI\bin\Debug\netcoreapp2.2\BartonWebAPI.pdb
+C:\Users\Telahun\Documents\School\CECS596\Barton1792\Barton1792API\BartonAPI\Barton1792DB\Barton1792DB\BartonWebAPI\obj\Debug\netcoreapp2.2\BartonWebAPI.dll
+C:\Users\Telahun\Documents\School\CECS596\Barton1792\Barton1792API\BartonAPI\Barton1792DB\Barton1792DB\BartonWebAPI\obj\Debug\netcoreapp2.2\BartonWebAPI.pdb

@@ -33,7 +33,6 @@ namespace Barton1792DB
                 util.print(ex.Message);
             }
         }
-
         public static void CreateAndCleanEmployeeTable()
         {
             Context cWeekDayData = Context.from_excel(WeekDaySchedule, 1, 1, 1, 6, 10, true);
@@ -123,7 +122,5 @@ namespace Barton1792DB
         public static void CallProcedure(string Procedure)
         {
         }
-
-        
     }
 }
