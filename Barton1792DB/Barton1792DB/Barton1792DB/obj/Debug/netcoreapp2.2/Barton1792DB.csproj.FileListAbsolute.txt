@@ -39,3 +39,16 @@ C:\Users\Telahun\Documents\School\CECS596\Barton1792\Barton1792API\BartonAPI\Bar
 C:\Users\Telahun\Documents\School\CECS596\Barton1792\Barton1792API\BartonAPI\Barton1792DB\Barton1792DB\Barton1792DB\bin\Debug\netcoreapp2.2\DVAC.dll
 C:\Users\Telahun\Documents\School\CECS596\Barton1792\Barton1792API\BartonAPI\Barton1792DB\Barton1792DB\Barton1792DB\bin\Debug\netcoreapp2.2\DVAC.pdb
 C:\Users\Telahun\Documents\School\CECS596\Barton1792\Barton1792API\BartonAPI\Barton1792DB\Barton1792DB\Barton1792DB\obj\Debug\netcoreapp2.2\Barton1792DB.csproj.CopyComplete
+D:\GoogleDrive\GodivaCode\barton\BartonAPI\Barton1792DB\Barton1792DB\Barton1792DB\bin\Debug\netcoreapp2.2\Barton1792DB.deps.json
+D:\GoogleDrive\GodivaCode\barton\BartonAPI\Barton1792DB\Barton1792DB\Barton1792DB\bin\Debug\netcoreapp2.2\Barton1792DB.runtimeconfig.json
+D:\GoogleDrive\GodivaCode\barton\BartonAPI\Barton1792DB\Barton1792DB\Barton1792DB\bin\Debug\netcoreapp2.2\Barton1792DB.runtimeconfig.dev.json
+D:\GoogleDrive\GodivaCode\barton\BartonAPI\Barton1792DB\Barton1792DB\Barton1792DB\bin\Debug\netcoreapp2.2\Barton1792DB.dll
+D:\GoogleDrive\GodivaCode\barton\BartonAPI\Barton1792DB\Barton1792DB\Barton1792DB\bin\Debug\netcoreapp2.2\Barton1792DB.pdb
+D:\GoogleDrive\GodivaCode\barton\BartonAPI\Barton1792DB\Barton1792DB\Barton1792DB\bin\Debug\netcoreapp2.2\DVAC.dll
+D:\GoogleDrive\GodivaCode\barton\BartonAPI\Barton1792DB\Barton1792DB\Barton1792DB\bin\Debug\netcoreapp2.2\DVAC.pdb
+D:\GoogleDrive\GodivaCode\barton\BartonAPI\Barton1792DB\Barton1792DB\Barton1792DB\obj\Debug\netcoreapp2.2\Barton1792DB.csproj.CoreCompileInputs.cache
+D:\GoogleDrive\GodivaCode\barton\BartonAPI\Barton1792DB\Barton1792DB\Barton1792DB\obj\Debug\netcoreapp2.2\Barton1792DB.AssemblyInfoInputs.cache
+D:\GoogleDrive\GodivaCode\barton\BartonAPI\Barton1792DB\Barton1792DB\Barton1792DB\obj\Debug\netcoreapp2.2\Barton1792DB.AssemblyInfo.cs
+D:\GoogleDrive\GodivaCode\barton\BartonAPI\Barton1792DB\Barton1792DB\Barton1792DB\obj\Debug\netcoreapp2.2\Barton1792DB.csproj.CopyComplete
+D:\GoogleDrive\GodivaCode\barton\BartonAPI\Barton1792DB\Barton1792DB\Barton1792DB\obj\Debug\netcoreapp2.2\Barton1792DB.dll
+D:\GoogleDrive\GodivaCode\barton\BartonAPI\Barton1792DB\Barton1792DB\Barton1792DB\obj\Debug\netcoreapp2.2\Barton1792DB.pdb

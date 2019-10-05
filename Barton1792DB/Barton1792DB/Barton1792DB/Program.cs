@@ -3,6 +3,7 @@ using DVAC;
 using System.IO;
 using Barton1792DB.DAO;
 using Barton1792DB.DBO;
+using Barton1792DB.BO;
 using System.Collections.Generic;
 
 namespace Barton1792DB
@@ -13,14 +14,18 @@ namespace Barton1792DB
         public static void Main(string[] args)
         {
             //CreateDB.ConnectToDB();
-            CreateDB.CreateAndCleanEmployeeTable();
-            Console.ReadKey();
-            Readers reader = new Readers();
+            //CreateDB.CleanAndCreateTables();
+            //Console.ReadKey();
 
+
+            Readers reader = new Readers();
             //List<Employee> EmployeeData = reader.GetStuff(new List<Employee>());
             List<Employee> CurrentEmployeeData = reader.GetEmployees(new List<Employee>());
-            List<Schedule> CurrentScheduled = reader.GetSchedules(new List<Schedule>());
             List<Template> CurrentSchedulingTemplate = reader.GetTemplate(new List<Template>());
+
+            BartonSchedulerWeekday.GenerateSchedule(CurrentEmployeeData, CurrentSchedulingTemplate);
+            List<Schedule> CurrentScheduled = reader.GetSchedules(new List<Schedule>());
+
             Context emp = Context.from_generic(CurrentEmployeeData);
             util.print(emp);
             Console.ReadKey();

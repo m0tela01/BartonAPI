@@ -6,6 +6,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using Barton1792DB.DBO;
+using DVAC;
 using MySql.Data.MySqlClient;
 
 namespace Barton1792DB.DAO
@@ -13,6 +14,7 @@ namespace Barton1792DB.DAO
     public class Readers
     {
         private string BSConnectionString = CreateDB.BSConnectionString;
+        private IDbConnection conn => new MySqlConnection(BSConnectionString);
         private string GetEmployeesSql { get { return "GetEmployeeData"; } }
         private string GetTemplateSql { get { return "GetTemplate"; } }
         private string GetCurrentScheduleSql { get { return "GetCurrentSchedule"; } }
@@ -28,7 +30,7 @@ namespace Barton1792DB.DAO
                 SeniorityNumber = int.Parse(rdr["senioritynumber"].ToString()),
                 ShiftPreference = int.Parse(rdr["shiftpref"].ToString()),
                 EmployeeName = rdr["empname"].ToString(),
-                SeniorityDate = DateTime.Parse(rdr["senioritydate"].ToString()),
+                SeniorityDate = DateTime.Parse(rdr["senioritydate"].ToString()),      //NEED fix date format
                 PrebuiltHours = int.Parse(rdr["prebuilthours"].ToString()),
                 WeekendOTHours = int.Parse(rdr["weekendothours"].ToString()),
                 TotalHours = int.Parse(rdr["totalhours"].ToString()),
@@ -46,10 +48,9 @@ namespace Barton1792DB.DAO
                 EmployeeName = rdr["empname"].ToString(),
                 JobName = rdr["jobname"].ToString(),
                 SeniorityNumber = int.Parse(rdr["senioritynumber"].ToString()),
-                Shift1 = int.Parse(rdr["s1"].ToString()),
-                Shift2 = int.Parse(rdr["s2"].ToString()),
-                Shift3 = int.Parse(rdr["s3"].ToString()),
-                ShiftPreference = int.Parse(rdr["shiftpref"].ToString())
+                Shift = int.Parse(rdr["shift"].ToString()),
+                ShiftPreference = int.Parse(rdr["shiftpref"].ToString()),
+                ScheduleDate = DateTime.Parse(rdr["scheduledate"].ToString())
             };
             return sch;
         }
@@ -86,6 +87,7 @@ namespace Barton1792DB.DAO
                         }
                         rdr.Close();
                     }
+                    conn.Close();
                 }
                 catch (MySqlException ex)
                 {
@@ -111,6 +113,7 @@ namespace Barton1792DB.DAO
                         }
                         rdr.Close();
                     }
+                    conn.Close();
                 }
                 catch (MySqlException ex)
                 {
@@ -136,6 +139,7 @@ namespace Barton1792DB.DAO
                         }
                         rdr.Close();
                     }
+                    conn.Close();
                 }
                 catch (MySqlException ex)
                 {
@@ -147,40 +151,10 @@ namespace Barton1792DB.DAO
         #endregion Get Objects
 
         #region Need to make generic readers
-        public List<Employee> GetEmployees()
+        public Context GetEmployees()
         {
-            List<Employee> Employees = new List<Employee>();
-            using (MySqlConnection conn = new MySqlConnection(BSConnectionString))
-            {
-                try
-                {
-                    conn.Open();
-                    MySqlCommand cmd = new MySqlCommand(GetEmployeesSql, conn);
-                    MySqlDataReader rdr = cmd.ExecuteReader();
-                    //while (rdr.Read())
-                    //{
-                    //    Employees.Add(new Employee()
-                    //    {
-                    //        EmployeeId = int.Parse(rdr["empid"].ToString()),
-                    //        ShiftPreference = int.Parse(rdr["shiftpref"].ToString()),
-                    //        EmployeeName = rdr["empname"].ToString(),
-                    //        SeniorityNumber = int.Parse(rdr[""].ToString()),
-                    //        ClockNumber = int.Parse(rdr[""].ToString()),
-                    //        SeniorityDate = DateTime.Parse(rdr[""].ToString()),
-                    //        PrebuiltHours = int.Parse(rdr[""].ToString()),
-                    //        WeekendOTHours = int.Parse(rdr[""].ToString()),
-                    //        TotalHours = int.Parse(rdr[""].ToString()),
-                    //        JobId = int.Parse(rdr["jobid"].ToString())
-                    //    });
-                    //}
-                    rdr.Close();
-                }
-                catch (MySqlException ex)
-                {
-                    Console.WriteLine(ex);
-                }
-            }
-            return Employees;
+            Context c = Context.from_sql_query(conn, "select * from  sazerac.employee");
+            return c;
         }
         public List<T> GetStuff<T>(List<T> objectType, MySqlCommand cmd)
         {

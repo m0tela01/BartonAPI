@@ -1,15 +1,14 @@
 -- USE `sazerac`;
--- DROP procedure IF EXISTS `InsertCurrentSchedule`;
+-- DROP procedure IF EXISTS `InsertOldScheduleToHistory`;
 
-
+InsertOldScheduleToHistory
 DELIMITER $$
 USE `sazerac`$$
 -- Updates schedule table with current schedule from most recent scheuling run.
--- Used in InsertCurrentSchedule(). 
-CREATE PROCEDURE `InsertCurrentSchedule` ()
+-- Used in InsertOldScheduleToHistory(). 
+CREATE PROCEDURE `InsertOldScheduleToHistory` ()
 BEGIN
-	TRUNCATE `InsertCurrentSchedule`;
-	INSERT INTO `schedule` 
+	INSERT INTO `schedule_history` 
     (
 		senioritynumber,
         clocknumber,

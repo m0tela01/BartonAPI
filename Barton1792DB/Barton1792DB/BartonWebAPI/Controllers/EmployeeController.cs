@@ -13,9 +13,6 @@ namespace BartonWebAPI.Controllers
     [ApiController]
     public class EmployeeController : ControllerBase
     {
-        //public IEnumerable<Employee> Get()
-        //{
-
-        //}
+        
     }
 }

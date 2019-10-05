@@ -3,7 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Barton1792DB.DBO;
+using Barton1792DB.DAO;
+using Barton1792DB.BO;
+using DVAC;
 using Microsoft.AspNetCore.Mvc;
+using System.Web;
 
 namespace BartonWebAPI.Controllers
 {
@@ -11,18 +15,32 @@ namespace BartonWebAPI.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
+        Readers readers = new Readers();
         // GET api/values
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        public ActionResult<Context> Get()
         {
-            return new string[] { "value1", "value2" };
+            Barton1792DB.DAO.Readers readers = new Barton1792DB.DAO.Readers();
+            Context c = readers.GetEmployees();
+            return c;
         }
 
         // GET api/values/5
         [HttpGet("{id}")]
         public ActionResult<string> Get(int id)
         {
-            return "value";
+            //Context c = Context.from_csv("Assets/EmployeeTableToDB.csv");
+            //Context c = Context.from_sql_query("", q);
+
+            //return "selected employee:" + string.Join(" ", c[c["senioritynumber"] == id][0]);
+            return "";
+        }
+
+        [HttpGet("{id}")]
+        public ActionResult<List<Employee>> GetEmployee(string id)
+        {
+            List<Employee> employeeTable = readers.GetEmployees(new List<Employee>());
+            return employeeTable;
         }
 
         // POST api/values

@@ -37,10 +37,9 @@ namespace Barton1792DB.DAO
                             cmd.Parameters[2].Value = item.EmployeeName;
                             cmd.Parameters[3].Value = item.JobName;
                             cmd.Parameters[4].Value = item.DepartmentName;
-                            cmd.Parameters[5].Value = item.Shift1;
-                            cmd.Parameters[6].Value = item.Shift2;
-                            cmd.Parameters[7].Value = item.Shift3;
-                            cmd.Parameters[8].Value = item.ShiftPreference;
+                            cmd.Parameters[5].Value = item.Shift;
+                            cmd.Parameters[6].Value = item.ShiftPreference;
+                            cmd.Parameters[7].Value = item.ScheduleDate;
                         }
                     }
                     trans.Commit();

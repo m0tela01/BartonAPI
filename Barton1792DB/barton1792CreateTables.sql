@@ -28,15 +28,16 @@ CREATE TABLE `sazerac`.`job` (
 
 DROP TABLE IF EXISTS sazerac.department;
 CREATE TABLE `sazerac`.`department` (
-  departmentname varchar(50), 
-    deptid INT SIGNED,
-		  PRIMARY KEY (departmentname), 
+  deptid INT SIGNED,
+    departmentname varchar(50), 
+		  PRIMARY KEY (deptid), 
         FOREIGN KEY (deptid) REFERENCES deptid
 );
 
 
-DROP TABLE IF EXISTS sazerac.shift;
-CREATE TABLE `sazerac`.`shift` (
+-- data generated from UI - was shift 
+DROP TABLE IF EXISTS sazerac.template;
+CREATE TABLE `sazerac`.`template` (
 	jobid INT SIGNED,
     deptid INT SIGNED,
     s1 INT SIGNED,
@@ -45,15 +46,18 @@ CREATE TABLE `sazerac`.`shift` (
 		  PRIMARY KEY (jobid)
 );
 
-DROP TABLE IF EXISTS sazerac.template;
-CREATE TABLE `sazerac`.`template`(
-  jobname varchar(50),
-    departmentname varchar(50),
-    s1 INT SIGNED,
-    s2 INT SIGNED,
-    s3 INT SIGNED
+
+-- DROP TABLE IF EXISTS sazerac.template;
+-- CREATE TABLE `sazerac`.`template`(
+--   jobname varchar(50),
+--     departmentname varchar(50),
+--     s1 INT SIGNED,
+--     s2 INT SIGNED,
+--     s3 INT SIGNED
+-- );
 
 
+-- data generated from scheduling 
 DROP TABLE IF EXISTS sazerac.schedule;
 CREATE TABLE `sazerac`.`schedule`(
   senioritynumber INT SIGNED,
@@ -69,3 +73,35 @@ CREATE TABLE `sazerac`.`schedule`(
         FOREIGN KEY (clocknumber) REFERENCES clocknumber
 );
 
+
+DROP TABLE IF EXISTS sazerac.schedule;
+CREATE TABLE `sazerac`.`schedule`(
+  senioritynumber INT SIGNED,
+    clocknumber INT SIGNED,
+    empname varchar(50),
+    jobname varchar(50), 
+    departmentname varchar(50),
+    s1 INT SIGNED,
+    s2 INT SIGNED,
+    s3 INT SIGNED,
+    shiftpref INT SIGNED,
+    scheduledate DATE,
+      PRIMARY KEY (scheduledate),
+        FOREIGN KEY (clocknumber) REFERENCES clocknumber
+);
+
+DROP TABLE IF EXISTS sazerac.schedule_history;
+CREATE TABLE `sazerac`.`schedule_history`(
+  senioritynumber INT SIGNED,
+    clocknumber INT SIGNED,
+    empname varchar(50),
+    jobname varchar(50), 
+    departmentname varchar(50),
+    s1 INT SIGNED,
+    s2 INT SIGNED,
+    s3 INT SIGNED,
+    shiftpref INT SIGNED,
+    scheduledate DATE,
+      PRIMARY KEY (scheduledate),
+        FOREIGN KEY (clocknumber) REFERENCES clocknumber
+);

@@ -11,9 +11,8 @@ namespace Barton1792DB.DBO
         public string EmployeeName { get; set; }
         public string DepartmentName { get; set; }
         public string JobName { get; set; }
-        public int Shift1 { get; set; }
-        public int Shift2 { get; set; }
-        public int Shift3 { get; set; }
+        public int Shift { get; set; }
         public int ShiftPreference { get; set; }
+        public DateTime ScheduleDate { get; set; }
     }
 }

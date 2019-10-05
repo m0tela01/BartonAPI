@@ -13,7 +13,7 @@ namespace Barton1792DB
     {
         #region Props
         private static MySqlConnection conn = new MySqlConnection();
-        public static string BSConnectionString { get { return "server=107.180.51.29;uid=sazerac_user;pwd=sazerac2019;database=sazerac"; } }
+        public static string BSConnectionString { get { return "server=107.180.51.29;uid=sazerac_user;pwd=sazerac2019;database=sazerac;convert zero datetime=True"; } }
         private static string DataFolder { get { return Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "\\DataFiles\\"; } }
         private static string SeniorityFile { get { return DataFolder + "UL Master Seniority List.xlsx"; } }
         private static string WeekDaySchedule { get { return DataFolder + "6 DAY SCHEDULE WEEK OF 9-2-19.xlsm"; } }
@@ -34,9 +34,9 @@ namespace Barton1792DB
                 util.print(ex.Message);
             }
         }
-        public static void CreateAndCleanEmployeeTable()
+        public static void CleanAndCreateTables()
         {
-            Context cMaster = Context.from_excel(MasterList, 2, 1, 1, 1, 15, true); 
+            Context cMaster = Context.from_excel(MasterList, 2, 1, 1, 1, 15, true);
             conn.ConnectionString = BSConnectionString;
 
             cMaster.columnrename("Seniority Number", "senioritynumber");
@@ -47,16 +47,32 @@ namespace Barton1792DB
             cMaster.columnrename("Prebuilt Hours", "prebuilthours");
             cMaster.columnrename("Weekend OT hours", "weekendothours");
             cMaster.columnrename("Total hours", "totalhours");
+            cMaster.columnrename("Rated Job", "jobname");
+            cMaster.columnrename("Department", "departmentname");
 
-            List<string> jobs = cMaster["Rated Job"].Distinct().ToList();
+            List<string> jobs = cMaster["jobname"].Distinct().ToList();
             cMaster.addfeature("jobid");
-            for (int i = 0; i < cMaster.Rows; i++)
+            for (int i = 0; i <= cMaster.Rows; i++)
             {
                 for (int j = 0; j < jobs.Count(); j++)
                 {
-                    if (cMaster[i, 4].ToString() == jobs[j])
+                    if (cMaster[i, "jobname"].ToString() == jobs[j])
                     {
-                        cMaster[i, 10] = j + 1;
+                        cMaster[i, "jobid"] = j + 1;
+                        //cMaster[i, 15] = j + 1;
+                    }
+                }
+            }
+
+            List<string> depts = cMaster["departmentname"].Distinct().ToList();
+            cMaster.addfeature("deptid");
+            for (int i = 0; i <= cMaster.Rows; i++)
+            {
+                for (int j = 0; j < depts.Count(); j++)
+                {
+                    if(cMaster[i, "departmentname"].ToString()== depts[j])
+                    {
+                        cMaster[i, "deptid"] = j + 1;
                     }
                 }
             }
@@ -70,11 +86,33 @@ namespace Barton1792DB
                 "prebuilthours",
                 "weekendothours",
                 "totalhours",
-                "jobid" }];
+                "jobid"
+            }];
 
-            EmployeeTableToDB.to_csv(DataFolder + "EmployeeTableToDB.csv");
-            Context.Import_csv(conn, DataFolder + "EmployeeTableToDB.csv", tablename: "employee", showlog: true);
-            util.print("Imported: " + "cMaster");
+            Context.Import(conn, EmployeeTableToDB, tablename: "employee", showlog: true, accept_null: false);
+            util.print("Imported: EmployeeTableToDB");
+            conn.Close();
+
+
+            Context JobTableToDB = cMaster[new string[] {
+                "jobid",
+                "jobname",
+                "deptid"
+            }];
+
+            Context.Import(conn, JobTableToDB, tablename: "job", showlog: true);
+            util.print("Imported: JobTableToDB");
+            conn.Close();
+
+
+            Context DepartmentTableToDB = cMaster[new string[]{
+                "deptid",
+                "departmentname"
+            }];
+
+            Context.Import(conn, DepartmentTableToDB, "department", showlog: true);
+            util.print("Imported: DepartmentTableToDB");
+            conn.Close();
         }
 
         public static void CreateAndCleanEmployeeTableOld()
