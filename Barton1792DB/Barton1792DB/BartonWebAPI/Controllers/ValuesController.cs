@@ -17,13 +17,13 @@ namespace BartonWebAPI.Controllers
     {
         Readers readers = new Readers();
         // GET api/values
-        [HttpGet]
-        public ActionResult<Context> Get()
-        {
-            Barton1792DB.DAO.Readers readers = new Barton1792DB.DAO.Readers();
-            Context c = readers.GetEmployees();
-            return c;
-        }
+        //[HttpGet]
+        //public ActionResult<Context> Get()
+        //{
+        //    Barton1792DB.DAO.Readers readers = new Barton1792DB.DAO.Readers();
+        //    Context c = readers.GetEmployees();
+        //    return c;
+        //}
 
         // GET api/values/5
         [HttpGet("{id}")]
@@ -36,11 +36,23 @@ namespace BartonWebAPI.Controllers
             return "";
         }
 
-        [HttpGet("{id}")]
-        public ActionResult<List<Employee>> GetEmployee(string id)
+        //[HttpGet("{id}")]
+        //public ActionResult<List<Employee>> GetEmployee(string id)
+        //{
+        //    List<Employee> employeeTable = readers.GetEmployees(new List<Employee>());
+        //    return employeeTable;
+        //}
+
+        [HttpGet]
+        public ActionResult<List<Schedule>> GetSchedule()
         {
-            List<Employee> employeeTable = readers.GetEmployees(new List<Employee>());
-            return employeeTable;
+            List<Schedule> CurrentSchedule = new List<Schedule>();
+            List<Employee> CurrentEmployeeData = readers.GetEmployees(new List<Employee>());
+            List<Template> CurrentSchedulingTemplate = readers.GetTemplate(new List<Template>());
+
+            BartonSchedulerWeekday.GenerateSchedule(CurrentEmployeeData, CurrentSchedulingTemplate);
+            CurrentSchedule = readers.GetSchedules(CurrentSchedule);
+            return CurrentSchedule;
         }
 
         // POST api/values

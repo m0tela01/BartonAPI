@@ -43,11 +43,11 @@ namespace Barton1792DB.DAO
         {
             Schedule sch = new Schedule()
             {
+                SeniorityNumber = int.Parse(rdr["senioritynumber"].ToString()),
                 ClockNumber = int.Parse(rdr["clocknumber"].ToString()),
-                DepartmentName = rdr["departmentname"].ToString(),
                 EmployeeName = rdr["empname"].ToString(),
                 JobName = rdr["jobname"].ToString(),
-                SeniorityNumber = int.Parse(rdr["senioritynumber"].ToString()),
+                DepartmentName = rdr["departmentname"].ToString(),
                 Shift = int.Parse(rdr["shift"].ToString()),
                 ShiftPreference = int.Parse(rdr["shiftpref"].ToString()),
                 ScheduleDate = DateTime.Parse(rdr["scheduledate"].ToString())

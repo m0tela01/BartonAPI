@@ -15,11 +15,9 @@ BEGIN
         empname,
         jobname,
         departmentname,
-        s1,
-        s2,
-        s3,
+        shift,
         shiftpref,
-        datestart
+        scheduledate
     )
     VALUES 
     (
@@ -28,11 +26,9 @@ BEGIN
         `EmployeeName`,
         `DepartmentName`,
         `JobName`,
-        `Shift1`,
-        `Shift2`,
-        `Shift3`,
+        `Shift`,
         `ShiftPreference`,
-        `datestart`
+        `scheduledate`
     );
         
 END$$
