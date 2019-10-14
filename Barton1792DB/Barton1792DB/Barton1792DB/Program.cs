@@ -14,8 +14,8 @@ namespace Barton1792DB
         public static void Main(string[] args)
         {
             //CreateDB.ConnectToDB();
-            //CreateDB.CleanAndCreateTables();
-            //Console.ReadKey();
+            CreateDB.CleanAndCreateTables();
+            Console.ReadKey();
 
 
             Readers reader = new Readers();

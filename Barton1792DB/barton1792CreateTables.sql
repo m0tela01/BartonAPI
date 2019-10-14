@@ -81,12 +81,10 @@ CREATE TABLE `sazerac`.`schedule`(
     empname varchar(50),
     jobname varchar(50), 
     departmentname varchar(50),
-    s1 INT SIGNED,
-    s2 INT SIGNED,
-    s3 INT SIGNED,
+    shift INT,
     shiftpref INT SIGNED,
-    scheduledate DATE,
-      PRIMARY KEY (scheduledate),
+    scheduledate DATETIME,
+      -- PRIMARY KEY (scheduledate),
         FOREIGN KEY (clocknumber) REFERENCES clocknumber
 );
 
@@ -97,11 +95,9 @@ CREATE TABLE `sazerac`.`schedule_history`(
     empname varchar(50),
     jobname varchar(50), 
     departmentname varchar(50),
-    s1 INT SIGNED,
-    s2 INT SIGNED,
-    s3 INT SIGNED,
+    shift INT,
     shiftpref INT SIGNED,
-    scheduledate DATE,
-      PRIMARY KEY (scheduledate),
+    scheduledate DATETIME,
+      -- PRIMARY KEY (scheduledate),
         FOREIGN KEY (clocknumber) REFERENCES clocknumber
 );

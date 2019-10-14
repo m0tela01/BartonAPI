@@ -17,6 +17,10 @@ namespace Barton1792DB.BO
         public static List<Schedule> GenerateSchedule(List<Employee> employees, List<Template> templates)
         {
             //jobid - 17 jobname - LABOR   deptid - 6
+            DateTime today = DateTime.Today;
+            // The (... + 7) % 7 ensures we end up with a value in the range [0, 6]
+            int daysUntilTuesday = ((int)DayOfWeek.Monday - (int)today.DayOfWeek + 7) % 7;
+            DateTime nextMonday = today.AddDays(daysUntilTuesday);
 
             List<Schedule> schedules = new List<Schedule>();    // For insert
             // this data is ordered by senority number, job, and shiftpreference
@@ -33,7 +37,7 @@ namespace Barton1792DB.BO
                     if (employees[i].SeniorityNumber == -99)
                     {
                         //Employee has some kind of absent status - NOTELIGIIBLETOSCHEDULE
-                        schedule.ScheduleDate = DateTime.Now;
+                        schedule.ScheduleDate = nextMonday;
                         schedule.SeniorityNumber = employees[i].SeniorityNumber;
                         schedule.ClockNumber = employees[i].ClockNumber;
                         schedule.EmployeeName = employees[i].EmployeeName;
@@ -51,7 +55,7 @@ namespace Barton1792DB.BO
                             //bool preferedShift2 = false;
                             bool preferedShift3 = false;
                             //Schedule schedule = new Schedule();
-                            schedule.ScheduleDate = DateTime.Now;
+                            schedule.ScheduleDate = nextMonday;
                             schedule.SeniorityNumber = employees[i].SeniorityNumber;
                             schedule.ClockNumber = employees[i].ClockNumber;
                             schedule.EmployeeName = employees[i].EmployeeName;

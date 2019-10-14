@@ -36,7 +36,7 @@ namespace Barton1792DB
         }
         public static void CleanAndCreateTables()
         {
-            Context cMaster = Context.from_excel(MasterList, 2, 1, 1, 1, 15, true);
+            Context cMaster = Context.from_excel(MasterList, 3, 1, 1, 1, 15, true);
             conn.ConnectionString = BSConnectionString;
 
             cMaster.columnrename("Seniority Number", "senioritynumber");
