@@ -10,14 +10,74 @@ namespace Barton1792DB.DAO
     public class Writers
     {
         private string BSConnectionString = CreateDB.BSConnectionString;
+        public string ClearScheduleBeforeInsertCurrentScheduleSql { get { return "ClearScheduleBeforeInsertCurrentSchedule"; } }
+        public string ClearScheduleTemplateBeforeInsertCurrentTemplateSql { get { return "ClearScheduleTemplateBeforeInsertCurrentTemplate"; } }
         public string InsertCurrentScheduleSql { get { return "InsertCurrentSchedule"; } }
-        public string UpdateCurrentScheduleTemplateSql { get { return "InsertCurrentScheduleTemplate"; } }
+        public string InsertPreviousScheduleToScheduleHistorySql { get { return "InsertPreviousScheduleToScheduleHistory"; } }
+        public string InsertCurrentScheduleTemplateSql { get { return "InsertCurrentScheduleTemplate"; } }
 
-        public string InsertSql { get { return ""; } }
-        public string UpdateSql { get { return ""; } }
-        public string DeleteSql { get { return ""; } }
 
-        //Need Before insert should copy previous schedule into json for old schedules
+        #region Clear
+        public void ClearScheduleBeforeInsert()
+        {
+            using (MySqlConnection conn = new MySqlConnection(BSConnectionString))
+            {
+                try
+                {
+                    conn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(ClearScheduleBeforeInsertCurrentScheduleSql, conn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    Console.WriteLine(ex);
+                }
+            }
+        }
+        public void ClearScheduleTemplateBeforeInsert()
+        {
+            using (MySqlConnection conn = new MySqlConnection(BSConnectionString))
+            {
+                try
+                {
+                    conn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(ClearScheduleTemplateBeforeInsertCurrentTemplateSql, conn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    Console.WriteLine(ex);
+                }
+            }
+        }
+        #endregion Clear
+
+        #region Insert
+        public void InsertPreviousScheduleToScheduleHistory()
+        {
+            using (MySqlConnection conn = new MySqlConnection(BSConnectionString))
+            {
+                try
+                {
+                    conn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(InsertPreviousScheduleToScheduleHistorySql, conn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    Console.WriteLine(ex);
+                }
+            }
+        }
         public void InsertCurrentSchedule(List<Schedule> Schedules)
         {
             using (MySqlConnection conn = new MySqlConnection(BSConnectionString))
@@ -40,35 +100,6 @@ namespace Barton1792DB.DAO
                             cmd.Parameters.Add(new MySqlParameter("@shift", item.Shift));
                             cmd.Parameters.Add(new MySqlParameter("@shiftpref", item.ShiftPreference));
                             cmd.Parameters.Add(new MySqlParameter("@scheduledate", item.ScheduleDate));
-
-
-                            //cmd.Parameters.AddWithValue("@senioritynumber", item.SeniorityNumber);
-                            //cmd.Parameters.AddWithValue("@clocknumber", item.ClockNumber);
-                            //cmd.Parameters.AddWithValue("@empname", item.EmployeeName);
-                            //cmd.Parameters.AddWithValue("@jobname", item.JobName);
-                            //cmd.Parameters.AddWithValue("@departmentname", item.DepartmentName);
-                            //cmd.Parameters.AddWithValue("@shift", item.Shift);
-                            //cmd.Parameters.AddWithValue("@shiftpref", item.ShiftPreference);
-                            //cmd.Parameters.AddWithValue("@scheduledate", item.ScheduleDate.ToString("yyyy-MM-dd HH:mm:ss"));
-                            //cmd.Parameters.Clear();
-
-                            //cmd.Parameters["senioritynumber"].Value = item.SeniorityNumber;
-                            //cmd.Parameters["clocknumber"].Value = item.ClockNumber;
-                            //cmd.Parameters["employeename"].Value = item.EmployeeName;
-                            //cmd.Parameters["jobname"].Value = item.JobName;
-                            //cmd.Parameters["departmentname"].Value = item.DepartmentName;
-                            //cmd.Parameters["shift"].Value = item.Shift;
-                            //cmd.Parameters["shiftpreference"].Value = item.ShiftPreference;
-                            //cmd.Parameters["scheduledate"].Value = item.ScheduleDate;
-
-                            //cmd.Parameters[0].Value = item.SeniorityNumber;
-                            //cmd.Parameters[1].Value = item.ClockNumber;
-                            //cmd.Parameters[2].Value = item.EmployeeName;
-                            //cmd.Parameters[3].Value = item.JobName;
-                            //cmd.Parameters[4].Value = item.DepartmentName;
-                            //cmd.Parameters[5].Value = item.Shift;
-                            //cmd.Parameters[6].Value = item.ShiftPreference;
-                            //cmd.Parameters[7].Value = item.ScheduleDate;
                             cmd.ExecuteNonQuery();
                         }
                     }
@@ -80,30 +111,28 @@ namespace Barton1792DB.DAO
                 }
             }
         }
-        //Need should be an update?
-        public void UpdateCurrentScheduleTemplate(List<Template> Templates)
+        public void InsertCurrentScheduleTemplate(List<Template> Templates)
         {
             using (MySqlConnection conn = new MySqlConnection(BSConnectionString))
             {
                 try
                 {
                     conn.Open();
-                    MySqlTransaction trans = conn.BeginTransaction();
-                    using (MySqlCommand cmd = new MySqlCommand(UpdateCurrentScheduleTemplateSql, conn))
+                    foreach (var item in Templates)
                     {
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Transaction = trans;
-                        foreach (var item in Templates)
+                        //MySqlTransaction trans = conn.BeginTransaction();
+                        using (MySqlCommand cmd = new MySqlCommand(InsertCurrentScheduleTemplateSql, conn))
                         {
-
-                            cmd.Parameters[0].Value = item.JobName;
-                            cmd.Parameters[1].Value = item.DepartmentName;
-                            cmd.Parameters[2].Value = item.Shift1;
-                            cmd.Parameters[3].Value = item.Shift2;
-                            cmd.Parameters[4].Value = item.Shift3;
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            //cmd.Transaction = trans;
+                            cmd.Parameters.Add(new MySqlParameter("@jobName", item.JobName));
+                            cmd.Parameters.Add(new MySqlParameter("@departmentName", item.DepartmentName));
+                            cmd.Parameters.Add(new MySqlParameter("@shift1", item.Shift1));
+                            cmd.Parameters.Add(new MySqlParameter("@shift2", item.Shift2));
+                            cmd.Parameters.Add(new MySqlParameter("@shift3", item.Shift3));
                         }
                     }
-                    trans.Commit();
+                    //trans.Commit();
                 }
                 catch (MySqlException ex)
                 {
@@ -111,7 +140,7 @@ namespace Barton1792DB.DAO
                 }
             }
         }
-
+        #endregion Insert
         #region Make Generics
         /// <summary>
         /// For easy Insert, Delete, Update

@@ -43,16 +43,19 @@ namespace BartonWebAPI.Controllers
         //    return employeeTable;
         //}
 
-        [HttpGet]
+
+        [HttpGet("{GetEmployeeData}")]
+        public ActionResult<List<Employee>> GetEmployees()
+        {
+            List<Employee> CurrentEmployeeData = readers.GetEmployees(new List<Employee>());
+            return CurrentEmployeeData;
+        }
+
+        [HttpGet("{GetCurrentSchedule}")]
         public ActionResult<List<Schedule>> GetSchedule()
         {
-            List<Schedule> CurrentSchedule = new List<Schedule>();
-            List<Employee> CurrentEmployeeData = readers.GetEmployees(new List<Employee>());
-            List<Template> CurrentSchedulingTemplate = readers.GetTemplate(new List<Template>());
-
-            BartonSchedulerWeekday.GenerateSchedule(CurrentEmployeeData, CurrentSchedulingTemplate);
-            CurrentSchedule = readers.GetSchedules(CurrentSchedule);
-            return CurrentSchedule;
+            BartonScheduler.GenerateWeekdaySchedule();
+            return readers.GetSchedules(new List<Schedule>());
         }
 
         // POST api/values

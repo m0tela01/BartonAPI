@@ -11,6 +11,7 @@ WHERE jobid = (SELECT jobid
 		FROM `job` 
         WHERE job.jobname = "FORKLIFT OPER" );
 
+call GetEmployeeById(1237);
 
 INSERT INTO schedule_history 
 SELECT * 

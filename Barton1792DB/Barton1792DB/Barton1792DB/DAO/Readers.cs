@@ -16,6 +16,7 @@ namespace Barton1792DB.DAO
         private string BSConnectionString = CreateDB.BSConnectionString;
         private IDbConnection conn => new MySqlConnection(BSConnectionString);
         private string GetEmployeesSql { get { return "GetEmployeeData"; } }
+        private string GetEmployeeByIdSql { get { return "GetEmployeeById"; } }
         private string GetTemplateSql { get { return "GetTemplate"; } }
         private string GetCurrentScheduleSql { get { return "GetCurrentSchedule"; } }
         private string DataFolder { get { return Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "\\DataFiles\\"; } }
@@ -68,7 +69,7 @@ namespace Barton1792DB.DAO
         }
         #endregion Create Objects
 
-        #region Get Objects
+        #region Readers
         //Need scalar - GetEmployee(Employee employee)
         public List<Employee> GetEmployees(List<Employee> Employees)
         {
@@ -148,7 +149,7 @@ namespace Barton1792DB.DAO
             }
             return Templates;
         }
-        #endregion Get Objects
+        #endregion Readers
 
         #region Need to make generic readers
         public Context GetEmployees()

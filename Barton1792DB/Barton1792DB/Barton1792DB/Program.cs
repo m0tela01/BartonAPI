@@ -23,7 +23,7 @@ namespace Barton1792DB
             List<Employee> CurrentEmployeeData = reader.GetEmployees(new List<Employee>());
             List<Template> CurrentSchedulingTemplate = reader.GetTemplate(new List<Template>());
 
-            BartonSchedulerWeekday.GenerateSchedule(CurrentEmployeeData, CurrentSchedulingTemplate);
+            BartonScheduler.GenerateWeekdaySchedule();
             List<Schedule> CurrentScheduled = reader.GetSchedules(new List<Schedule>());
 
             Context sch = Context.from_generic(CurrentScheduled);
