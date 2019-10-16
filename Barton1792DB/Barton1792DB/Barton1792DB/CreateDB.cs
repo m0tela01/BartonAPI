@@ -89,7 +89,9 @@ namespace Barton1792DB
                 "jobid"
             }];
 
-            Context.Import(conn, EmployeeTableToDB, tablename: "employee", showlog: true, accept_null: false);
+            EmployeeTableToDB["senioritydate"] = EmployeeTableToDB["senioritydate"].clean_date("yyyy-MM-dd");
+
+            Context.Import(conn, EmployeeTableToDB, tablename: "employee", showlog: true, accept_null: true);
             util.print("Imported: EmployeeTableToDB");
             conn.Close();
 

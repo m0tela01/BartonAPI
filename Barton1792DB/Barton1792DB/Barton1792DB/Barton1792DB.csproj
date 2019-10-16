@@ -16,7 +16,7 @@
 
   <ItemGroup>
     <Reference Include="DVAC">
-      <HintPath>..\..\..\..\..\..\GodivaCode\DVAC\bin\Debug\netcoreapp2.2\DVAC.dll</HintPath>
+      <HintPath>..\..\..\..\..\DVAC\bin\Debug\netcoreapp2.2\DVAC.dll</HintPath>
     </Reference>
   </ItemGroup>
 

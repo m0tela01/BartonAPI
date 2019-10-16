@@ -35,6 +35,7 @@ select * from schedule_history;
 
 select * from employee where jobid in (10,3,5,22,25);
 
+
 -- truncate employee;
 
 -- truncate department;
