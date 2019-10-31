@@ -8,6 +8,7 @@ using System.Text;
 using Barton1792DB.DBO;
 using DVAC;
 using MySql.Data.MySqlClient;
+using Newtonsoft.Json;
 
 namespace Barton1792DB.DAO
 {
@@ -150,6 +151,34 @@ namespace Barton1792DB.DAO
             return Templates;
         }
         #endregion Readers
+
+        #region Converters
+        public List<Template> ConvertJsonToTemplates(string response)
+        {
+            List<Template> templates = new List<Template>();
+            Template template;
+
+            try
+            {
+                var data = JsonConvert.DeserializeObject<List<Template>>(response);
+                foreach (var item in data)
+                {
+                    template = new Template();
+                    template.DepartmentName = item.DepartmentName;
+                    template.JobName = item.JobName;
+                    template.Shift1 = item.Shift1;
+                    template.Shift2 = item.Shift2;
+                    template.Shift3 = item.Shift3;
+                    templates.Add(template);
+                }
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+            return templates;
+        }
+        #endregion Converters
 
         #region Need to make generic readers
         public Context GetEmployees()

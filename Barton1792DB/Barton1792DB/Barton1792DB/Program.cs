@@ -14,20 +14,24 @@ namespace Barton1792DB
         public static void Main(string[] args)
         {
             //CreateDB.ConnectToDB();
-            CreateDB.CleanAndCreateTables();
-            Console.ReadKey();
+            //CreateDB.CleanAndCreateTables();
+            //Console.ReadKey();
 
 
             Readers reader = new Readers();
             //List<Employee> EmployeeData = reader.GetStuff(new List<Employee>());
-            List<Employee> CurrentEmployeeData = reader.GetEmployees(new List<Employee>());
+            //List<Employee> CurrentEmployeeData = reader.GetEmployees(new List<Employee>());
             List<Template> CurrentSchedulingTemplate = reader.GetTemplate(new List<Template>());
 
-            BartonScheduler.GenerateWeekdaySchedule();
-            List<Schedule> CurrentScheduled = reader.GetSchedules(new List<Schedule>());
+            //BartonScheduler.GenerateWeekdaySchedule();
+            //List<Schedule> CurrentScheduled = reader.GetSchedules(new List<Schedule>());
 
-            Context sch = Context.from_generic(CurrentScheduled);
-            util.print(sch);
+            //Context sch = Context.from_generic(CurrentScheduled);
+            Context temps = Context.from_generic(CurrentSchedulingTemplate);
+            Dictionary<string, Context> tempss = new Dictionary<string, Context>();
+            tempss["CurrentTemplate"] = temps;
+            Context.to_jsons("CurrentSchedule.json", tempss);
+            
             util.print("HI");
             Console.ReadKey();
         }

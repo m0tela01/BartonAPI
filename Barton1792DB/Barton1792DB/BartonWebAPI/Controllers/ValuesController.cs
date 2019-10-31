@@ -43,6 +43,11 @@ namespace BartonWebAPI.Controllers
         //    return employeeTable;
         //}
 
+        [HttpPost("{PostCurrentTemplates}")]
+        public void Post(List<Template> templates)
+        {
+
+        }
 
         [HttpGet("{GetEmployeeData}")]
         public ActionResult<List<Employee>> GetEmployees()

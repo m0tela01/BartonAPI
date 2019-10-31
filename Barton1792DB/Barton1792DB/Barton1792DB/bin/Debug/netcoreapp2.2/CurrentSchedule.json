@@ -1,0 +1,9 @@
+[
+{ "Value" : [
+{"JobName" : "FORKLIFT OPER","DepartmentName" : "SHIP","Shift1" : "8,"Shift2" : "9,"Shift3" : "10},
+{"JobName" : "PACKER OPER","DepartmentName" : "BOTT","Shift1" : "7,"Shift2" : "7,"Shift3" : "7},
+{"JobName" : "CASE FEEDER","DepartmentName" : "BOTT","Shift1" : "5,"Shift2" : "5,"Shift3" : "5},
+{"JobName" : "FILLER OPER","DepartmentName" : "BOTT","Shift1" : "5,"Shift2" : "5,"Shift3" : "5},
+{"JobName" : "LABELER OPER","DepartmentName" : "BOTT","Shift1" : "7,"Shift2" : "5,"Shift3" : "5}
+] }
+]
