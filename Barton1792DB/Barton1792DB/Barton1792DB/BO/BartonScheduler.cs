@@ -18,7 +18,7 @@ namespace Barton1792DB.BO
         {
             //Get data to generate schedule
             List<Employee> employees = readers.GetEmployees(new List<Employee>());
-            List<Template> templates = readers.GetTemplate(new List<Template>());
+            List<Template> templates = readers.GetTemplates(new List<Template>());
             //Insert the data from the previous scheduling run to the history table
             writers.InsertPreviousScheduleToScheduleHistory();
             //Clear the previous schedule for the contents of the schedule table

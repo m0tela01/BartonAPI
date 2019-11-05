@@ -25,19 +25,6 @@ C:\Users\Michael Telahun\Documents\School\Capstone\Barton1792\BartonAPI\Barton17
 C:\Users\Michael Telahun\Documents\School\Capstone\Barton1792\BartonAPI\Barton1792DB\Barton1792DB\Barton1792DB\obj\Debug\netcoreapp2.2\Barton1792DB.csproj.CopyComplete
 C:\Users\Michael Telahun\Documents\School\Capstone\Barton1792\BartonAPI\Barton1792DB\Barton1792DB\Barton1792DB\obj\Debug\netcoreapp2.2\Barton1792DB.dll
 C:\Users\Michael Telahun\Documents\School\Capstone\Barton1792\BartonAPI\Barton1792DB\Barton1792DB\Barton1792DB\obj\Debug\netcoreapp2.2\Barton1792DB.pdb
-C:\Users\Telahun\Documents\School\CECS596\Barton1792\Barton1792API\BartonAPI\Barton1792DB\Barton1792DB\Barton1792DB\obj\Debug\netcoreapp2.2\Barton1792DB.csproj.CoreCompileInputs.cache
-C:\Users\Telahun\Documents\School\CECS596\Barton1792\Barton1792API\BartonAPI\Barton1792DB\Barton1792DB\Barton1792DB\obj\Debug\netcoreapp2.2\Barton1792DB.AssemblyInfoInputs.cache
-C:\Users\Telahun\Documents\School\CECS596\Barton1792\Barton1792API\BartonAPI\Barton1792DB\Barton1792DB\Barton1792DB\obj\Debug\netcoreapp2.2\Barton1792DB.AssemblyInfo.cs
-C:\Users\Telahun\Documents\School\CECS596\Barton1792\Barton1792API\BartonAPI\Barton1792DB\Barton1792DB\Barton1792DB\obj\Debug\netcoreapp2.2\Barton1792DB.dll
-C:\Users\Telahun\Documents\School\CECS596\Barton1792\Barton1792API\BartonAPI\Barton1792DB\Barton1792DB\Barton1792DB\obj\Debug\netcoreapp2.2\Barton1792DB.pdb
-C:\Users\Telahun\Documents\School\CECS596\Barton1792\Barton1792API\BartonAPI\Barton1792DB\Barton1792DB\Barton1792DB\bin\Debug\netcoreapp2.2\Barton1792DB.deps.json
-C:\Users\Telahun\Documents\School\CECS596\Barton1792\Barton1792API\BartonAPI\Barton1792DB\Barton1792DB\Barton1792DB\bin\Debug\netcoreapp2.2\Barton1792DB.runtimeconfig.json
-C:\Users\Telahun\Documents\School\CECS596\Barton1792\Barton1792API\BartonAPI\Barton1792DB\Barton1792DB\Barton1792DB\bin\Debug\netcoreapp2.2\Barton1792DB.runtimeconfig.dev.json
-C:\Users\Telahun\Documents\School\CECS596\Barton1792\Barton1792API\BartonAPI\Barton1792DB\Barton1792DB\Barton1792DB\bin\Debug\netcoreapp2.2\Barton1792DB.dll
-C:\Users\Telahun\Documents\School\CECS596\Barton1792\Barton1792API\BartonAPI\Barton1792DB\Barton1792DB\Barton1792DB\bin\Debug\netcoreapp2.2\Barton1792DB.pdb
-C:\Users\Telahun\Documents\School\CECS596\Barton1792\Barton1792API\BartonAPI\Barton1792DB\Barton1792DB\Barton1792DB\bin\Debug\netcoreapp2.2\DVAC.dll
-C:\Users\Telahun\Documents\School\CECS596\Barton1792\Barton1792API\BartonAPI\Barton1792DB\Barton1792DB\Barton1792DB\bin\Debug\netcoreapp2.2\DVAC.pdb
-C:\Users\Telahun\Documents\School\CECS596\Barton1792\Barton1792API\BartonAPI\Barton1792DB\Barton1792DB\Barton1792DB\obj\Debug\netcoreapp2.2\Barton1792DB.csproj.CopyComplete
 D:\GoogleDrive\GodivaCode\barton\BartonAPI\Barton1792DB\Barton1792DB\Barton1792DB\bin\Debug\netcoreapp2.2\Barton1792DB.deps.json
 D:\GoogleDrive\GodivaCode\barton\BartonAPI\Barton1792DB\Barton1792DB\Barton1792DB\bin\Debug\netcoreapp2.2\Barton1792DB.runtimeconfig.json
 D:\GoogleDrive\GodivaCode\barton\BartonAPI\Barton1792DB\Barton1792DB\Barton1792DB\bin\Debug\netcoreapp2.2\Barton1792DB.runtimeconfig.dev.json
@@ -51,5 +38,17 @@ D:\GoogleDrive\GodivaCode\barton\BartonAPI\Barton1792DB\Barton1792DB\Barton1792D
 D:\GoogleDrive\GodivaCode\barton\BartonAPI\Barton1792DB\Barton1792DB\Barton1792DB\obj\Debug\netcoreapp2.2\Barton1792DB.csproj.CopyComplete
 D:\GoogleDrive\GodivaCode\barton\BartonAPI\Barton1792DB\Barton1792DB\Barton1792DB\obj\Debug\netcoreapp2.2\Barton1792DB.dll
 D:\GoogleDrive\GodivaCode\barton\BartonAPI\Barton1792DB\Barton1792DB\Barton1792DB\obj\Debug\netcoreapp2.2\Barton1792DB.pdb
-C:\Users\Telahun\Documents\School\CECS596\Barton1792\Barton1792API\BartonAPI\Barton1792DB\Barton1792DB\Barton1792DB\obj\Debug\netcoreapp2.2\Barton1792DB.csprojAssemblyReference.cache
 C:\Users\Michael Telahun\Documents\School\Capstone\Barton1792\BartonAPI\Barton1792DB\Barton1792DB\Barton1792DB\bin\Debug\netcoreapp2.2\DVAC.pdb
+C:\Users\Telahun\Documents\School\CECS596\Barton1792\Barton1792API\BartonAPI\Barton1792DB\Barton1792DB\Barton1792DB\obj\Debug\netcoreapp2.2\Barton1792DB.csproj.CoreCompileInputs.cache
+C:\Users\Telahun\Documents\School\CECS596\Barton1792\Barton1792API\BartonAPI\Barton1792DB\Barton1792DB\Barton1792DB\obj\Debug\netcoreapp2.2\Barton1792DB.AssemblyInfoInputs.cache
+C:\Users\Telahun\Documents\School\CECS596\Barton1792\Barton1792API\BartonAPI\Barton1792DB\Barton1792DB\Barton1792DB\obj\Debug\netcoreapp2.2\Barton1792DB.AssemblyInfo.cs
+C:\Users\Telahun\Documents\School\CECS596\Barton1792\Barton1792API\BartonAPI\Barton1792DB\Barton1792DB\Barton1792DB\bin\Debug\netcoreapp2.2\Barton1792DB.deps.json
+C:\Users\Telahun\Documents\School\CECS596\Barton1792\Barton1792API\BartonAPI\Barton1792DB\Barton1792DB\Barton1792DB\bin\Debug\netcoreapp2.2\Barton1792DB.runtimeconfig.json
+C:\Users\Telahun\Documents\School\CECS596\Barton1792\Barton1792API\BartonAPI\Barton1792DB\Barton1792DB\Barton1792DB\bin\Debug\netcoreapp2.2\Barton1792DB.runtimeconfig.dev.json
+C:\Users\Telahun\Documents\School\CECS596\Barton1792\Barton1792API\BartonAPI\Barton1792DB\Barton1792DB\Barton1792DB\bin\Debug\netcoreapp2.2\Barton1792DB.dll
+C:\Users\Telahun\Documents\School\CECS596\Barton1792\Barton1792API\BartonAPI\Barton1792DB\Barton1792DB\Barton1792DB\bin\Debug\netcoreapp2.2\Barton1792DB.pdb
+C:\Users\Telahun\Documents\School\CECS596\Barton1792\Barton1792API\BartonAPI\Barton1792DB\Barton1792DB\Barton1792DB\bin\Debug\netcoreapp2.2\DVAC.dll
+C:\Users\Telahun\Documents\School\CECS596\Barton1792\Barton1792API\BartonAPI\Barton1792DB\Barton1792DB\Barton1792DB\bin\Debug\netcoreapp2.2\DVAC.pdb
+C:\Users\Telahun\Documents\School\CECS596\Barton1792\Barton1792API\BartonAPI\Barton1792DB\Barton1792DB\Barton1792DB\obj\Debug\netcoreapp2.2\Barton1792DB.csproj.CopyComplete
+C:\Users\Telahun\Documents\School\CECS596\Barton1792\Barton1792API\BartonAPI\Barton1792DB\Barton1792DB\Barton1792DB\obj\Debug\netcoreapp2.2\Barton1792DB.dll
+C:\Users\Telahun\Documents\School\CECS596\Barton1792\Barton1792API\BartonAPI\Barton1792DB\Barton1792DB\Barton1792DB\obj\Debug\netcoreapp2.2\Barton1792DB.pdb

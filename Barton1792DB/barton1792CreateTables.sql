@@ -58,20 +58,20 @@ CREATE TABLE `sazerac`.`template` (
 
 
 -- data generated from scheduling 
-DROP TABLE IF EXISTS sazerac.schedule;
-CREATE TABLE `sazerac`.`schedule`(
-  senioritynumber INT SIGNED,
-    clocknumber INT SIGNED,
-    empname varchar(50),
-    jobname varchar(50), 
-    departmentname varchar(50),
-    s1 INT SIGNED,
-    s2 INT SIGNED,
-    s3 INT SIGNED,
-    shiftpref INT SIGNED, 
-      PRIMARY KEY (senioritynumber),
-        FOREIGN KEY (clocknumber) REFERENCES clocknumber
-);
+-- DROP TABLE IF EXISTS sazerac.schedule;
+-- CREATE TABLE `sazerac`.`schedule`(
+--   senioritynumber INT SIGNED,
+--     clocknumber INT SIGNED,
+--     empname varchar(50),
+--     jobname varchar(50), 
+--     departmentname varchar(50),
+--     s1 INT SIGNED,
+--     s2 INT SIGNED,
+--     s3 INT SIGNED,
+--     shiftpref INT SIGNED, 
+--       PRIMARY KEY (senioritynumber),
+--         FOREIGN KEY (clocknumber) REFERENCES clocknumber
+-- );
 
 
 DROP TABLE IF EXISTS sazerac.schedule;

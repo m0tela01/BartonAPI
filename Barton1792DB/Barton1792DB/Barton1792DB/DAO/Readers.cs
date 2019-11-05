@@ -16,12 +16,20 @@ namespace Barton1792DB.DAO
     {
         private string BSConnectionString = CreateDB.BSConnectionString;
         private IDbConnection conn => new MySqlConnection(BSConnectionString);
-        private string GetEmployeesSql { get { return "GetEmployeeData"; } }
-        private string GetEmployeeByIdSql { get { return "GetEmployeeById"; } }
-        private string GetTemplateSql { get { return "GetTemplate"; } }
-        private string GetCurrentScheduleSql { get { return "GetCurrentSchedule"; } }
         private string DataFolder { get { return Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "\\DataFiles\\"; } }
         private string ProceduresFolder { get { return Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "\\Procedures\\"; } }
+
+        private string GetEmployeesSql { get { return "GetEmployeeData"; } }
+        private string GetTemplateSql { get { return "GetTemplate"; } }
+        private string GetCurrentScheduleSql { get { return "GetCurrentSchedule"; } }
+        private string GetScheduleHistoryDatesSql => "GetScheduleHistoryDates";
+        private string GetScheduleHistoryByScheduleDateSql => "GetScheduleHistoryByScheduleDate";
+
+        #region Scalars
+        private string GetEmployeeByIdSql => "GetEmployeeById";
+
+        #endregion Scalars
+
 
         #region Create Objects
         public Employee CreateEmployee(MySqlDataReader rdr)
@@ -37,6 +45,7 @@ namespace Barton1792DB.DAO
                 WeekendOTHours = int.Parse(rdr["weekendothours"].ToString()),
                 TotalHours = int.Parse(rdr["totalhours"].ToString()),
                 JobName = rdr["jobname"].ToString(),
+                JobId = int.Parse(rdr["jobid"].ToString()),
                 DepartmentName = rdr["departmentname"].ToString()
             };
             return emp;
@@ -68,10 +77,58 @@ namespace Barton1792DB.DAO
             };
             return temp;
         }
+        public HistoryDate CreateHistoryDate(MySqlDataReader rdr)
+        {
+            HistoryDate historyDate = new HistoryDate()
+            {
+                ScheduleDate = DateTime.Parse(rdr["scheduledate"].ToString())
+            };
+            return historyDate;
+        }
         #endregion Create Objects
 
         #region Readers
         //Need scalar - GetEmployee(Employee employee)
+        #region Scalars
+        /// <summary>
+        /// Get employee by their id (clocknumber).
+        /// </summary>
+        /// <param name="employee"></param>
+        /// <returns></returns>
+        public Employee GetEmployeeById(Employee employee, int employeeId)
+        {
+            using (MySqlConnection conn = new MySqlConnection(BSConnectionString))
+            {
+                try
+                {
+                    conn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(GetEmployeeByIdSql, conn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.Add(new MySqlParameter("@clockNumber", employeeId));
+                        MySqlDataReader rdr = cmd.ExecuteReader();
+                        while (rdr.Read())
+                        {
+                            employee = CreateEmployee(rdr);
+                        }
+                        rdr.Close();
+                    }
+                    conn.Close();
+                }
+                catch (MySqlException ex)
+                {
+                    Console.WriteLine(ex);
+                }
+            }
+            return employee;
+        }
+        #endregion Scalars
+
+        /// <summary>
+        /// Get employees table as list of employees.
+        /// </summary>
+        /// <param name="Employees"></param>
+        /// <returns></returns>
         public List<Employee> GetEmployees(List<Employee> Employees)
         {
             using (MySqlConnection conn = new MySqlConnection(BSConnectionString))
@@ -98,6 +155,11 @@ namespace Barton1792DB.DAO
             }
             return Employees;
         }
+        /// <summary>
+        /// Get current schedule table as list of schedules.
+        /// </summary>
+        /// <param name="Schedules"></param>
+        /// <returns></returns>
         public List<Schedule> GetSchedules(List<Schedule> Schedules)
         {
             using (MySqlConnection conn = new MySqlConnection(BSConnectionString))
@@ -124,7 +186,12 @@ namespace Barton1792DB.DAO
             }
             return Schedules;
         }
-        public List<Template> GetTemplate(List<Template> Templates)
+        /// <summary>
+        /// Get template as list of templates.
+        /// </summary>
+        /// <param name="Templates"></param>
+        /// <returns></returns>
+        public List<Template> GetTemplates(List<Template> Templates)
         {
             using (MySqlConnection conn = new MySqlConnection(BSConnectionString))
             {
@@ -150,6 +217,71 @@ namespace Barton1792DB.DAO
             }
             return Templates;
         }
+        /// <summary>
+        /// Get schedule as list of schedules based on the date of scheduling.
+        /// </summary>
+        /// <param name="Schedules"></param>
+        /// <param name="ScheduleDate"></param>
+        /// <returns></returns>
+        public List<Schedule> GetScheduleHistoryByScheduleDate(List<Schedule> Schedules, string ScheduleDate)
+        {
+            using (MySqlConnection conn = new MySqlConnection(BSConnectionString))
+            {
+                try
+                {
+                    conn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(GetScheduleHistoryByScheduleDateSql, conn))
+                    {// ToString("yyyy-MM-dd HH:mm:ss")
+                        cmd.Parameters.Add(new MySqlParameter("@scheduleDate", ScheduleDate));
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        MySqlDataReader rdr = cmd.ExecuteReader();
+                        while(rdr.Read())
+                        {
+                            Schedules.Add(CreateSchedule(rdr));
+                        }
+                        rdr.Close();
+                    }
+                    conn.Close();
+                }
+                catch (MySqlException ex)
+                {
+                    Console.WriteLine(ex);
+                }
+            }
+            return Schedules;
+        }
+        /// <summary>
+        /// Get history dates for previous schedules as list of histories.
+        /// </summary>
+        /// <param name="HistoryDates"></param>
+        /// <returns></returns>
+        public List<HistoryDate> GetScheduleHistoryDates(List<HistoryDate> HistoryDates)
+        {
+            using (MySqlConnection conn = new MySqlConnection(BSConnectionString))
+            {
+                try
+                {
+                    conn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(GetScheduleHistoryDatesSql, conn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        MySqlDataReader rdr = cmd.ExecuteReader();
+                        while (rdr.Read())
+                        {
+                            HistoryDates.Add(CreateHistoryDate(rdr));
+                        }
+                        rdr.Close();
+                    }
+                    conn.Close();
+                }
+                catch (MySqlException ex)
+                {
+                    Console.WriteLine(ex);
+                }
+            }
+            return HistoryDates;
+        }
+
         #endregion Readers
 
         #region Converters

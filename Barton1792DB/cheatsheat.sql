@@ -13,9 +13,11 @@ WHERE jobid = (SELECT jobid
 
 call GetEmployeeById(1237);
 
-INSERT INTO schedule_history 
-SELECT * 
-FROM schedule; 
+-- DROP PROCEDURE IF EXISTS UpdateCurrentScheduleTemplate;
+
+-- INSERT INTO schedule_history 
+-- SELECT * 
+-- FROM schedule; 
 
 select * from employee;
 
@@ -31,10 +33,37 @@ select * from schedule;
 
 select * from schedule_history;
 
+select distinct scheduledate from schedule_history;
 
+select * from schedule_history where scheduledate = "2019-10-14";
+
+call GetScheduleHistoryByScheduleDate('2019-10-14');
 
 select * from employee where jobid in (10,3,5,22,25);
 
+insert into `schedule_history` (
+			senioritynumber,
+			clocknumber,
+			empname,
+			jobname,
+			departmentname,
+            shift,
+			shiftpref,
+            scheduledate
+		)
+		VALUES 
+		(
+			'3',
+			'1237',
+			'Lindsay, Lohan3',
+            'PACKER OPER',
+			'BOTT',
+			'1',
+			'1',
+            '2019-10-14 00:00:00'
+		);
+
+delete from `schedule_history` where scheduledate = "2019-10-14" and clocknumber = 1237;
 
 -- truncate employee;
 
