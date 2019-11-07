@@ -9,7 +9,8 @@ USE `sazerac`$$
 CREATE PROCEDURE `GetScheduleHistoryDates` ()
 BEGIN
 	SELECT DISTINCT scheduledate 
-		FROM schedule_history;
+		FROM schedule_history
+			ORDER BY scheduledate ASC;
 END$$
 
 DELIMITER ;

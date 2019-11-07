@@ -16,12 +16,12 @@ namespace Barton1792DB.DAO
     {
         private string BSConnectionString = CreateDB.BSConnectionString;
         private IDbConnection conn => new MySqlConnection(BSConnectionString);
-        private string DataFolder { get { return Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "\\DataFiles\\"; } }
-        private string ProceduresFolder { get { return Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "\\Procedures\\"; } }
+        private string DataFolder => Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "\\DataFiles\\";
+        private string ProceduresFolder => Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "\\Procedures\\";
 
-        private string GetEmployeesSql { get { return "GetEmployeeData"; } }
-        private string GetTemplateSql { get { return "GetTemplate"; } }
-        private string GetCurrentScheduleSql { get { return "GetCurrentSchedule"; } }
+        private string GetEmployeesSql => "GetEmployeeData";
+        private string GetTemplateSql => "GetTemplate";
+        private string GetCurrentScheduleSql => "GetCurrentSchedule";
         private string GetScheduleHistoryDatesSql => "GetScheduleHistoryDates";
         private string GetScheduleHistoryByScheduleDateSql => "GetScheduleHistoryByScheduleDate";
 

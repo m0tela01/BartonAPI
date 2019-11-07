@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Barton1792DB.DBO
 {
-    [TypeConverter(typeof(TemplateConverter))]
+    //[TypeConverter(typeof(TemplateConverter))]
     public class Template
     {
         public string JobName { get; set; }
@@ -43,30 +43,54 @@ namespace Barton1792DB.DBO
             }
             return false;
         }
-    }
-
-    class TemplateConverter : TypeConverter
-    {
-        public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType)
+        public static bool TryParse(List<string> strings, List<Template> results)
         {
-            if (sourceType == typeof(string))
+            Template temp = null;
+            try
             {
-                return true;
-            }
-            return base.CanConvertFrom(context, sourceType);
-        }
-
-        public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
-        {
-            if (value is string)
-            {
-                Template temp = new Template();
-                if (Template.TryParse((string)value, out temp))
+                foreach (var item in strings)
                 {
-                    return temp;
+                    temp = new Template();
+                    Template.TryParse(item, out temp);
+                    results.Add(temp);
+                }
+                if (strings.Count == results.Count)
+                {
+                    return true;
                 }
             }
-            return base.ConvertFrom(context, culture, value);
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+            return false;
         }
     }
+
+    
+
+    //class TemplateConverter : TypeConverter
+    //{
+    //    public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType)
+    //    {
+    //        if (sourceType == typeof(string))
+    //        {
+    //            return true;
+    //        }
+    //        return base.CanConvertFrom(context, sourceType);
+    //    }
+
+    //    public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+    //    {
+    //        if (value is string)
+    //        {
+    //            Template temp = new Template();
+    //            if (Template.TryParse((string)value, out temp))
+    //            {
+    //                return temp;
+    //            }
+    //        }
+    //        return base.ConvertFrom(context, culture, value);
+    //    }
+    //}
 }

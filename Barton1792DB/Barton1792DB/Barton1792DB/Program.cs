@@ -19,6 +19,14 @@ namespace Barton1792DB
 
 
             Readers reader = new Readers();
+            List<Template> testconverter = reader.GetTemplates(new List<Template>());
+            Template tempparse = new Template();
+            Template.TryParse("job1,dept1,1,1,3", out tempparse);
+            util.print(tempparse);
+
+            testconverter = new List<Template>();
+            Template.TryParse(new List<string>() { "job1,dept1,1,1,3", "jo21,dept12,2,2,3" }, testconverter);
+            util.print(testconverter);
             Employee emp = reader.GetEmployeeById(new Employee(), 1248);
             util.print(emp);
             List<Schedule> scheduleByDate = reader.GetScheduleHistoryByScheduleDate(new List<Schedule>(), "2019-10-14 00:00:00");

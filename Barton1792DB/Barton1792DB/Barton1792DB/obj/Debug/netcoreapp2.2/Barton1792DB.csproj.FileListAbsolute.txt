@@ -52,3 +52,4 @@ C:\Users\Telahun\Documents\School\CECS596\Barton1792\Barton1792API\BartonAPI\Bar
 C:\Users\Telahun\Documents\School\CECS596\Barton1792\Barton1792API\BartonAPI\Barton1792DB\Barton1792DB\Barton1792DB\obj\Debug\netcoreapp2.2\Barton1792DB.csproj.CopyComplete
 C:\Users\Telahun\Documents\School\CECS596\Barton1792\Barton1792API\BartonAPI\Barton1792DB\Barton1792DB\Barton1792DB\obj\Debug\netcoreapp2.2\Barton1792DB.dll
 C:\Users\Telahun\Documents\School\CECS596\Barton1792\Barton1792API\BartonAPI\Barton1792DB\Barton1792DB\Barton1792DB\obj\Debug\netcoreapp2.2\Barton1792DB.pdb
+C:\Users\Telahun\Documents\School\CECS596\Barton1792\Barton1792API\BartonAPI\Barton1792DB\Barton1792DB\Barton1792DB\obj\Debug\netcoreapp2.2\Barton1792DB.csprojAssemblyReference.cache
